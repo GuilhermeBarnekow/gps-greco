@@ -1,7 +1,7 @@
 // Copyright (C) 2024 Michael Torrie and the QtAgOpenGPS Dev Team
 // SPDX-License-Identifier: GNU General Public License v3.0 or later
 import QtQuick
-import QtQuick.Effects
+// import QtQuick.Effects  // Not available in Qt 6.4.2 - commented out temporarily
 
 Rectangle
 {
@@ -25,12 +25,11 @@ Rectangle
                 angle: compass.heading
         }
     }
-    MultiEffect {
-        colorization: 1.0
-        colorizationColor: "red"
-        brightness: 0.5
+    // MultiEffect temporarily disabled - not available in Qt 6.4.2
+    Rectangle {
+        color: "red"
+        opacity: 0.5
         anchors.fill: needle
-        source: needle
     }
     Image {
         id: needle

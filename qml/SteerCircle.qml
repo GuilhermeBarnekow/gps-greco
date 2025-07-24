@@ -3,7 +3,7 @@
 //
 // IMU angle display, bottom right. Called "SteerCircle:" in AOG
 import QtQuick 2.15
-import QtQuick.Effects
+// import QtQuick.Effects  // Not available in Qt 6.4.2 - commented out temporarily
 
 Rectangle {
     id: steerCircle
@@ -22,14 +22,12 @@ Rectangle {
         visible: false
     }
 
-    MultiEffect {
+    // MultiEffect temporarily disabled - not available in Qt 6.4.2
+    Rectangle {
         id: colorize1
         anchors.fill: steerCircleImage
-        source: steerCircleImage
-        colorization: 1.0
-        colorizationColor: steerColor
-        saturation: 0.0
-        //brightness: -0.5
+        color: steerColor
+        opacity: 0.7
 
         transform: Rotation {
             origin.x: width / 2
@@ -48,14 +46,12 @@ Rectangle {
 
     }
 
-    MultiEffect {
+    // MultiEffect temporarily disabled - not available in Qt 6.4.2
+    Rectangle {
         id: colorize2
         anchors.fill: steerDotImage
-        source: steerDotImage
-        colorization: 1.0
-        colorizationColor: steerColor
-        saturation: 0.0
-        //brightness: -0.5
+        color: steerColor
+        opacity: 0.7
     }
 
     Rectangle {

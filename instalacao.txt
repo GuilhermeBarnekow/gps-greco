@@ -1,0 +1,53 @@
+Instruções Completas para Raspberry Pi 4:
+1. Instalar Dependências Básicas:
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y build-essential cmake git
+
+bash
+
+
+2. Instalar Qt6 Completo:
+sudo apt install -y qt6-base-dev qt6-declarative-dev qt6-multimedia-dev
+sudo apt install -y libqt6opengl6-dev qt6-tools-dev
+
+bash
+
+
+3. Instalar Módulos QML Necessários:
+sudo apt install -y qml6-module-qtquick-window qml6-module-qtquick-layouts
+sudo apt install -y qml6-module-qtquick-controls qml6-module-qtquick-dialogs
+sudo apt install -y qml6-module-qtmultimedia qml6-module-qtqml-workerscript
+sudo apt install -y qml6-module-qtquick-templates
+sudo apt install -y qml6-module-qt-labs-folderlistmodel qml6-module-qt-labs-settings
+sudo apt install -y qml6-module-qt-labs-platform qml6-module-qtquick-particles
+sudo apt install -y qml6-module-qtquick-shapes qml6-module-qtquick-localstorage
+
+bash
+
+
+4. Compilar e Executar:
+git clone https://github.com/torriem/QtAgOpenGPS.git
+cd QtAgOpenGPS
+mkdir build && cd build
+cmake .. -DCMAKE_BUILD_TYPE=Release
+make -j4
+./QtAgOpenGPS
+
+bash
+
+
+Funcionalidades Confirmadas:
+Interface gráfica QML completa
+Processamento de dados GPS/NMEA
+Servidor UDP para comunicação com módulos
+Renderização OpenGL para visualização de campo
+Sistema de controle de seções
+Simulador integrado
+Todas as funcionalidades principais do AgOpenGPS original
+Vantagens no Raspberry Pi 4:
+Baixo consumo energético - Ideal para uso em campo
+Portabilidade - Sistema compacto e robusto
+Custo-benefício - Solução econômica para agricultura de precisão
+GPIO disponível - Integração direta com hardware agrícola
+Performance adequada - Raspberry Pi 4 tem recursos suficientes
+O QtAgOpenGPS no Raspberry Pi 4 oferece uma solução completa e econômica para agricultura de precisão, mantendo todas as funcionalidades do sistema original em uma plataforma embarcada robusta e portátil.

@@ -4,7 +4,7 @@
 // Text is beside the icon, instead of below
 import QtQuick
 import QtQuick.Controls.Fusion
-import QtQuick.Effects
+// import QtQuick.Effects  // Not available in Qt 6.4.2 - commented out temporarily
 
 Button {
     implicitWidth: 270 * theme.scaleWidth
@@ -108,13 +108,12 @@ Button {
             source: icon_button_text_beside.icon.source
         }
 
-        MultiEffect {
+        // MultiEffect temporarily disabled - not available in Qt 6.4.2
+        Rectangle {
             id: disableFilter
             anchors.fill: content_image
-            source: content_image
-            colorization: 0.0
-            saturation: 0.0
-            brightness: 0.2
+            color: "gray"
+            opacity: 0.5
             visible: ! icon_button_text_beside.enabled
         }
     }

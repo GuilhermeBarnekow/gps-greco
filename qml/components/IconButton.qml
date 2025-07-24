@@ -4,7 +4,7 @@
 // Main button. Checked, or icon. Gradual shading-- not all one solid color
 import QtQuick
 import QtQuick.Controls.Fusion
-import QtQuick.Effects
+// import QtQuick.Effects  // Not available in Qt 6.4.2 - commented out temporarily
 
 import ".."
 import "../components"
@@ -123,13 +123,12 @@ Button {
             source: icon_button.icon.source
         }
 
-        MultiEffect {
+        // MultiEffect temporarily disabled - not available in Qt 6.4.2
+        Rectangle {
             id: disableFilter
             anchors.fill: content_image
-            source: content_image
-            colorization: 0.0
-            saturation: 0.0
-            brightness: 0.2
+            color: "gray"
+            opacity: 0.5
             visible: ! icon_button.enabled
         }
 

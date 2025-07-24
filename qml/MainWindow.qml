@@ -7,7 +7,7 @@ import QtQuick
 import QtQuick.Window
 import QtQuick.Controls.Fusion
 import QtQuick.Layouts
-import QtQuick.Effects
+// import QtQuick.Effects  // Not available in Qt 6.4.2 - commented out temporarily
 import QtQuick.Dialogs
 import QtMultimedia
 import AgOpenGPS 1.0
@@ -951,13 +951,13 @@ Window {
                     }
                 }
             }
-            MultiEffect{
+            // MultiEffect temporarily disabled - not available in Qt 6.4.2
+            Rectangle {
                 id: hydLiftIndicatorColor
                 anchors.fill: hydLiftIndicator
                 visible: btnHydLift.isOn
-                colorizationColor:"#F26600"
-                colorization: 1.0
-                source: hydLiftIndicator
+                color: "#F26600"
+                opacity: 0.7
             }
 
             Comp.OutlineText{
@@ -1011,17 +1011,17 @@ Window {
                     visible: false
                     anchors.fill: parent
                 }
-                MultiEffect{
+                // MultiEffect temporarily disabled - not available in Qt 6.4.2
+                Rectangle {
                     id: colorAutoUTurn
                     anchors.fill: parent
-                    source: autoTurnImage
                     visible: btnAutoYouTurn.isChecked
-                    //color: "#E5E54B"
-                    colorizationColor: if(aog.distancePivotToTurnLine > 0)
-                                           "#4CF24C"
-                                       else
-                                           "#F7A266"
-                    colorization: 1.0
+                    color: if(aog.distancePivotToTurnLine > 0)
+                               "#4CF24C"
+                           else
+                               "#F7A266"
+                    opacity: 0.7
+                    property color colorizationColor: color
                     MouseArea{
                         anchors.fill: parent
                         onClicked: aog.swapAutoYouTurnDirection()

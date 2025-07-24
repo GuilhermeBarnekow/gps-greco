@@ -4,7 +4,7 @@
 // Like IconButton, Just solid colors, though
 import QtQuick
 import QtQuick.Controls.Fusion
-import QtQuick.Effects
+// import QtQuick.Effects  // Not available in Qt 6.4.2 - commented out temporarily
 
 IconButton {
     implicitWidth: 120 * theme.scaleWidth
