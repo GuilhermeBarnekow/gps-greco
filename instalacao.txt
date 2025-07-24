@@ -1,39 +1,59 @@
-Instruções Completas para Raspberry Pi 4:
-1. Instalar Dependências Básicas:
+Instruções Completas para Raspberry Pi 4 com Módulo GNSS M10Fly:
+
+=== MÉTODO RECOMENDADO (Compilação Automática) ===
+
+1. Preparar Sistema:
+sudo ./scripts/fix_rasppi_deps.sh
+
+2. Compilar QtAgOpenGPS:
+./scripts/build_qtag_rasppi.sh
+
+3. Configurar Módulo GPS:
+sudo ./scripts/gps_setup.sh
+sudo reboot
+
+4. Testar e Iniciar:
+./scripts/test_serial.sh
+./scripts/start_gps_system.sh start
+
+=== MÉTODO MANUAL (se necessário) ===
+
+1. Corrigir Repositórios:
+sudo ./scripts/fix_rasppi_deps.sh
+
+2. Instalar Dependências Básicas:
 sudo apt update && sudo apt upgrade -y
-sudo apt install -y build-essential cmake git
+sudo apt install -y build-essential cmake git ninja-build
 
-bash
+3. Tentar Qt6 (pode falhar):
+sudo apt install -y -t testing qt6-base-dev qt6-declarative-dev qt6-multimedia-dev
+sudo apt install -y -t testing libqt6opengl6-dev qt6-tools-dev
 
+4. Se Qt6 falhar, usar Qt5:
+sudo apt install -y qtbase5-dev qtdeclarative5-dev qtmultimedia5-dev
+sudo apt install -y libqt5opengl5-dev qt5-qmake qttools5-dev
 
-2. Instalar Qt6 Completo:
-sudo apt install -y qt6-base-dev qt6-declarative-dev qt6-multimedia-dev
-sudo apt install -y libqt6opengl6-dev qt6-tools-dev
-
-bash
-
-
-3. Instalar Módulos QML Necessários:
-sudo apt install -y qml6-module-qtquick-window qml6-module-qtquick-layouts
-sudo apt install -y qml6-module-qtquick-controls qml6-module-qtquick-dialogs
-sudo apt install -y qml6-module-qtmultimedia qml6-module-qtqml-workerscript
-sudo apt install -y qml6-module-qtquick-templates
-sudo apt install -y qml6-module-qt-labs-folderlistmodel qml6-module-qt-labs-settings
-sudo apt install -y qml6-module-qt-labs-platform qml6-module-qtquick-particles
-sudo apt install -y qml6-module-qtquick-shapes qml6-module-qtquick-localstorage
-
-bash
-
-
-4. Compilar e Executar:
-git clone https://github.com/torriem/QtAgOpenGPS.git
-cd QtAgOpenGPS
+5. Compilar:
 mkdir build && cd build
 cmake .. -DCMAKE_BUILD_TYPE=Release
-make -j4
-./QtAgOpenGPS
+make -j2  # Usar menos cores se pouca RAM
 
-bash
+=== CONFIGURAÇÃO DO MÓDULO GNSS M10FLY ===
+
+Conexões Físicas:
+- VCC → Pino 2 (5V) ou Pino 4 (5V)
+- GND → Pino 6 (GND)
+- TX → Pino 10 (GPIO 15 - RX)
+- RX → Pino 8 (GPIO 14 - TX)
+
+Scripts Disponíveis:
+- fix_rasppi_deps.sh: Corrige dependências
+- build_qtag_rasppi.sh: Compila automaticamente
+- gps_setup.sh: Configura UART
+- test_serial.sh: Testa comunicação
+- gps_bridge.py: Ponte serial-UDP
+- start_gps_system.sh: Controla sistema
+- diagnose_gps.sh: Diagnóstico completo
 
 
 Funcionalidades Confirmadas:
